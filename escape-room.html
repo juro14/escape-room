@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room - Denk eens na over (jouw) DNA</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .app-container { padding: 20px; max-width: 800px; margin: auto; }
+        .card { background-color: #f0f0f0; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+        .button { background-color: #4A90E2; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; }
+        .button:disabled { background-color: #a0a0a0; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        document.getElementById('root').innerHTML = `
+            <div class='app-container'>
+                <div class='card'>
+                    <h1>Escape Room - Denk eens na over (jouw) DNA</h1>
+                    <p>Welkom bij deze interactieve escape room! Verken verschillende kamers, los puzzels op en ontdek de geheimen van DNA, evolutie en erfelijkheid.</p>
+                    <button class='button' onclick="startGame()">Start het avontuur</button>
+                </div>
+                <div id="game"></div>
+            </div>
+        `;
+
+        function startGame() {
+            document.getElementById('game').innerHTML = `
+                <div class='card'>
+                    <h2>Kamer 1: Het Ontstaan van de Aarde en het Leven</h2>
+                    <p>Hoe is de aarde en het leven volgens deze vijf bevolkingsgroepen ontstaan?</p>
+                    <ul>
+                        <li>Westerse wetenschap</li>
+                        <li>Inuit</li>
+                        <li>Zoeloes</li>
+                        <li>Maya’s</li>
+                        <li>Getuigen van Jehova</li>
+                    </ul>
+                    <button class='button' onclick="nextRoom(2)">Volgende Kamer</button>
+                </div>
+            `;
+        }
+
+        function nextRoom(room) {
+            const rooms = {
+                2: `
+                    <div class='card'>
+                        <h2>Kamer 2: Evolutie en Natuurlijke Selectie</h2>
+                        <p>Los de volgende vragen op:</p>
+                        <ul>
+                            <li>Wat betekent "survival of the fittest"?</li>
+                            <li>Wat is het verschil tussen natuurlijke selectie en genetische variatie?</li>
+                            <li>Noem twee voorbeelden van evolutie.</li>
+                        </ul>
+                        <button class='button' onclick="nextRoom(3)">Volgende Kamer</button>
+                    </div>
+                `,
+                3: `
+                    <div class='card'>
+                        <h2>Kamer 3: Erfelijkheid, DNA en Chromosomen</h2>
+                        <p>Beantwoord de volgende vragen:</p>
+                        <ul>
+                            <li>Wat is het verschil tussen dominante en recessieve genen?</li>
+                            <li>Hoe lang is een DNA-streng?</li>
+                            <li>Wat is er bijzonder aan het 23ste chromosomenpaar?</li>
+                        </ul>
+                        <button class='button' onclick="nextRoom(4)">Volgende Kamer</button>
+                    </div>
+                `,
+                4: `
+                    <div class='card'>
+                        <h2>Kamer 4: De Grote Finale</h2>
+                        <p>Waarom zijn niet alle levende wezens hetzelfde, zelfs als ze verwant zijn?</p>
+                        <button class='button' onclick="finishGame()">Escape Room Voltooid!</button>
+                    </div>
+                `
+            };
+            document.getElementById('game').innerHTML = rooms[room] || '';
+        }
+
+        function finishGame() {
+            document.getElementById('game').innerHTML = `
+                <div class='card'>
+                    <h2>Gefeliciteerd!</h2>
+                    <p>Je hebt de Escape Room succesvol afgerond! 🎉</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
